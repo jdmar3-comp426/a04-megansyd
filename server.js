@@ -26,10 +26,9 @@ app.get("/app/", (req, res, next) => {
 
 // Define other CRUD API endpoints using express.js and better-sqlite3
 // CREATE a new user (HTTP method POST) at endpoint /app/new/
-app.post("/app/new/users", (req,res) => {
+app.post("/app/new", (req,res) => {
 	const stmt = db.prepare("INSERT INTO userinfo (user, pass) VALUES (?, ?)");
-	res.json({"message":"1 record createed: ID 3 (201)"});
-	res.status(200);
+	res.status(200).json({"message":"1 record createed: ID 3 (201)"});
 });
 
 // READ a list of all users (HTTP method GET) at endpoint /app/users/
@@ -47,7 +46,7 @@ app.get("/app/user/:id", (req, res) => {
 // UPDATE a single user (HTTP method PATCH) at endpoint /app/update/user/:id
 app.patch("/app/update/user/:id", (req, res) => {
 	const stmt = db.prepare('UPDATE userinfo SET user = COALESCE(?,user), pass = COALESCE(?,pass) WHERE id = ?');
-	res.status(200).json(stmt);
+	res.status(200);
 });
 
 // DELETE a single user (HTTP method DELETE) at endpoint /app/delete/user/:id
