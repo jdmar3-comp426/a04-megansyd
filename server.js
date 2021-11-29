@@ -46,7 +46,7 @@ app.get("/app/user/:id", (req, res) => {
 // UPDATE a single user (HTTP method PATCH) at endpoint /app/update/user/:id
 app.patch("/app/update/user/:id", (req, res) => {
 	const stmt = db.prepare('UPDATE userinfo SET user = COALESCE(?,user), pass = COALESCE(?,pass) WHERE id = ?');
-	const info = stmt.run(req);
+	const info = stmt.run("user=newtest&pass=supersecurepassword");
 	res.status(200).json(console.log(info.changes));
 });
 
