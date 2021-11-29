@@ -7,6 +7,9 @@ var db = require("./database.js");
 // Require md5 MODULE
 var md5 = require("md5");
 
+// Require a middleware extension for express
+var bodyParser = require("body-parser");
+
 // Make Express use its own built-in body parser
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
